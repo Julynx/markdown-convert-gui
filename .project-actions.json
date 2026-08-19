@@ -1,10 +1,40 @@
 {
   "actions": [
     {
-      "text": "$(play) Start",
+      "text": "$(run) Start",
       "command": "npm start",
-      "tooltip": "Run app",
+      "tooltip": "Start app",
       "color": "#b0eb93"
+    },
+    {
+      "text": "$(debug-step-over) Bump patch",
+      "command": "npm version patch",
+      "tooltip": "Bump patch",
+      "color": "#ebdb93"
+    },
+    {
+      "text": "$(debug-step-over) Bump minor",
+      "command": "npm version minor",
+      "tooltip": "Bump minor",
+      "color": "#93c4eb"
+    },
+    {
+      "text": "$(debug-step-over) Bump major",
+      "command": "npm version major",
+      "tooltip": "Bump major",
+      "color": "#eb93e4"
+    },
+    {
+      "text": "$(package) Build Installer (win)",
+      "command": "npm run dist",
+      "tooltip": "Build Windows installer",
+      "color": "#93c5fd"
+    },
+    {
+      "text": "$(package) Build AppImage (linux)",
+      "command": "npm run dist:linux",
+      "tooltip": "Build Linux AppImage",
+      "color": "#fdba93"
     }
   ]
 }

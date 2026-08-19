@@ -7,6 +7,7 @@
 :root {
   --ink: #23262d;
   --paper: #ffffff;
+  --border: #cccccc;
 
   --blue: #2b6cb0;
   --blue-fill: #d6e9fa;
@@ -19,8 +20,7 @@
   --red-fill: #ffe1dd;
 
   --border-width: 2px;
-  --radius: 10px;
-  --radius-window: 14px;
+  --radius: 8px;
 
   --font-family: "Inter", "Segoe UI", system-ui, sans-serif;
 }
@@ -57,8 +57,8 @@ body {
   display: flex;
   flex-direction: column;
   background: var(--paper);
-  border: var(--border-width) solid var(--ink);
-  border-radius: var(--radius-window);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
   overflow: hidden;
   transition: border-color 120ms ease;
 }
@@ -73,7 +73,7 @@ body.drop-target #window-frame {
   align-items: center;
   justify-content: space-between;
   padding: 0 14px 0 22px;
-  border-bottom: var(--border-width) solid var(--ink);
+  border-bottom: var(--border-width) solid var(--border);
   -webkit-app-region: drag;
 }
 
@@ -92,8 +92,9 @@ body.drop-target #window-frame {
   line-height: 1;
   color: var(--ink);
   background: var(--paper);
-  border: var(--border-width) solid var(--ink);
-  border-radius: 8px;
+  /*border: var(--border-width) solid var(--border);*/
+  border: none;
+  border-radius: var(--radius);
   cursor: pointer;
   margin-right: -4px;
   margin-top: 1px;
@@ -197,7 +198,7 @@ body.drop-target #window-frame {
 .button-secondary {
   color: var(--ink);
   background: var(--paper);
-  border-color: var(--ink);
+  border-color: var(--border);
 }
 
 .button-secondary:not(:disabled):hover {
@@ -357,7 +358,7 @@ body.drop-target #window-frame {
   max-height: 160px;
   overflow: auto;
   padding: 12px 14px;
-  border: var(--border-width) solid var(--ink);
+  border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
   background: var(--paper);
   font-family: "Cascadia Mono", "Consolas", monospace;
