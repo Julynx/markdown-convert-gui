@@ -1,0 +1,10 @@
+{
+  "actions": [
+    {
+      "text": "$(play) Start",
+      "command": "npm start",
+      "tooltip": "Run app",
+      "color": "#b0eb93"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; script-src 'self'">
+  <title>markdown-convert-gui</title>
+  <link rel="stylesheet" href="styles/fonts.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+  <div id="window-frame">
+    <header id="titlebar">
+      <span id="app-title">markdown-convert-gui</span>
+      <button id="close-button" class="titlebar-button" title="Close" aria-label="Close">&times;</button>
+    </header>
+
+    <main id="content">
+
+      <section id="screen-loading" class="screen screen-centered">
+        <div class="throbber throbber-large"></div>
+        <p class="status-text">Checking requirements...</p>
+      </section>
+
+      <section id="screen-requirements" class="screen">
+        <p class="lead">You seem to be missing a few required dependencies.<br>
+        Click the button below to install them.</p>
+        <div id="requirement-cards" class="cards"></div>
+        <button id="install-button" class="button button-primary button-wide">Install requirements</button>
+        <div id="install-progress" class="inline-progress" hidden>
+          <div class="throbber throbber-small"></div>
+          <span id="install-progress-text" class="status-text">Installing...</span>
+        </div>
+        <div id="install-error" class="error-panel" hidden>
+          <p class="error-panel-title">Installation failed. The captured output is below.</p>
+          <pre id="install-error-output" class="error-output"></pre>
+        </div>
+      </section>
+
+      <section id="screen-update" class="screen screen-centered">
+        <p class="lead">markdown-convert is out of date.<br>Updating, please wait...</p>
+        <div class="throbber throbber-large"></div>
+        <div id="update-error" class="error-panel" hidden>
+          <p class="error-panel-title">The update failed. The captured output is below.</p>
+          <pre id="update-error-output" class="error-output"></pre>
+          <div class="button-row">
+            <button id="update-retry-button" class="button button-primary">Retry</button>
+            <button id="update-continue-button" class="button button-secondary">Continue without updating</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-main" class="screen screen-centered">
+        <p class="hero-text">Drag and drop a Markdown (.md)<br>file to convert it to PDF.</p>
+        <button id="explore-button" class="button button-primary">Explore</button>
+        <p class="footnote">You can also include a CSS file for styling.</p>
+      </section>
+
+      <section id="screen-converting" class="screen screen-centered">
+        <div class="throbber throbber-large"></div>
+        <p id="conversion-status" class="status-text">Converting...</p>
+      </section>
+
+      <section id="screen-error" class="screen">
+        <p id="error-title" class="error-title">Something went wrong.</p>
+        <p id="error-message" class="error-message"></p>
+        <ul id="error-files" class="error-files" hidden></ul>
+        <pre id="error-output" class="error-output" hidden></pre>
+        <button id="error-back-button" class="button button-primary button-wide">Back</button>
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
