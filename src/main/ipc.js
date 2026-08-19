@@ -31,14 +31,27 @@ function serializeError(error) {
  *
  * @param {Electron.BrowserWindow} mainWindow
  * @param {{info: Function, warn: Function, error: Function}} logger
+ * @param {{hasConsent: Function, grantConsent: Function, clearConsent: Function}} consentStore
  */
-function registerIpcHandlers(mainWindow, logger) {
+function registerIpcHandlers(mainWindow, logger, consentStore) {
   ipcMain.handle("window:close", () => {
     mainWindow.close();
   });
 
   ipcMain.handle("requirements:check", async () => {
     return checkRequirements(logger);
+  });
+
+  ipcMain.handle("install-consent:get", () => {
+    return consentStore.hasConsent();
+  });
+
+  ipcMain.handle("install-consent:grant", () => {
+    consentStore.grantConsent();
+  });
+
+  ipcMain.handle("install-consent:clear", () => {
+    consentStore.clearConsent();
   });
 
   ipcMain.handle("requirements:install", async () => {

@@ -34,8 +34,13 @@ async function bootstrap() {
   const missingCount = statuses.filter((status) => !status.found).length;
   if (missingCount > 0) {
     requirementsScreen.show(statuses);
+    if (await api.getInstallConsent()) {
+      requirementsScreen.installAutomatically();
+    }
     return;
   }
+
+  await api.clearInstallConsent();
 
   const updateStatus = await api.checkForUpdate();
   if (updateStatus.status === "outdated") {

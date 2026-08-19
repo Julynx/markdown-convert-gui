@@ -18,6 +18,15 @@ contextBridge.exposeInMainWorld("markdownConvertGui", {
   /** Installs the first missing requirement, then relaunches the app. */
   installRequirements: () => ipcRenderer.invoke("requirements:install"),
 
+  /** @returns {Promise<boolean>} True when the user consented to installs. */
+  getInstallConsent: () => ipcRenderer.invoke("install-consent:get"),
+
+  /** Persists the user's consent to install missing requirements. */
+  grantInstallConsent: () => ipcRenderer.invoke("install-consent:grant"),
+
+  /** Removes the stored install consent. */
+  clearInstallConsent: () => ipcRenderer.invoke("install-consent:clear"),
+
   /** @returns {Promise<{status: string}>} Update availability. */
   checkForUpdate: () => ipcRenderer.invoke("update:check"),
 

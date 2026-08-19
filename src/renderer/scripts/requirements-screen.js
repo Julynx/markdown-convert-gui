@@ -1,7 +1,8 @@
 /**
  * Requirements screen: renders one card per dependency and installs the first
- * missing one when the user clicks "Install requirements". On success the main
- * process relaunches the app, so a resolved promise means the install failed.
+ * missing one when the user clicks "Install requirements". The click also
+ * saves the user's consent to persistent memory, so after the app reboots the
+ * install chain continues automatically until no requirement is missing.
  */
 
 import { createScreenManager } from "./screen-manager.js";
@@ -80,8 +81,33 @@ export function createRequirementsScreen(screenManager) {
     }
   }
 
+  /**
+   * Records the user's consent in persistent memory, then installs the first
+   * missing requirement. After the app reboots, the saved consent lets the
+   * chain continue without another click.
+   */
+  async function grantConsentAndInstall() {
+    await window.markdownConvertGui.grantInstallConsent();
+    await install();
+  }
+
+  /**
+   * Continues the install chain without user interaction. Used after a
+   * reboot, when the user already consented in a previous run.
+   *
+   * @returns {Promise<void>}
+   */
+  function installAutomatically() {
+    return install().catch((error) => {
+      installProgress.hidden = true;
+      installButton.disabled = false;
+      installErrorOutput.textContent = error.stack || String(error);
+      installError.hidden = false;
+    });
+  }
+
   installButton.addEventListener("click", () => {
-    install().catch((error) => {
+    grantConsentAndInstall().catch((error) => {
       installProgress.hidden = true;
       installButton.disabled = false;
       installErrorOutput.textContent = error.stack || String(error);
@@ -89,5 +115,5 @@ export function createRequirementsScreen(screenManager) {
     });
   });
 
-  return { show };
+  return { show, installAutomatically };
 }

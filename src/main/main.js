@@ -10,6 +10,7 @@ const path = require("path");
 const { app, BrowserWindow } = require("electron");
 const { createLogger } = require("./logger");
 const { refreshWindowsPath } = require("./environment");
+const { createInstallConsentStore } = require("./install-consent");
 const { registerIpcHandlers } = require("./ipc");
 
 const WINDOW_WIDTH = 780;
@@ -47,8 +48,13 @@ app.whenReady().then(async () => {
 
   await refreshWindowsPath(logger);
 
+  const consentStore = createInstallConsentStore(
+    path.join(app.getPath("userData"), "install-consent.json"),
+    logger
+  );
+
   const mainWindow = createMainWindow();
-  registerIpcHandlers(mainWindow, logger);
+  registerIpcHandlers(mainWindow, logger, consentStore);
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {

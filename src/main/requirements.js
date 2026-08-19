@@ -11,7 +11,7 @@ const { runCommand, probeCommand, formatCommandOutput } = require("./process-run
 const REQUIREMENTS = [
   {
     id: "uv",
-    name: "UV",
+    name: "uv",
     description: "Fast Python package manager that runs markdown-convert.",
     icon: "assets/icons/uv.svg",
     installSteps: [
