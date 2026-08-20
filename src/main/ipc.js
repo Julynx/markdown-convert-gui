@@ -6,7 +6,7 @@
  */
 
 const path = require("path");
-const { ipcMain, dialog, app } = require("electron");
+const { ipcMain, dialog, app, shell } = require("electron");
 const { checkRequirements, installFirstMissingRequirement } = require("./requirements");
 const { checkForUpdate, installUpdate } = require("./updater");
 const { runConversionBatch, DropValidationError, ConversionError } = require("./converter");
@@ -91,6 +91,12 @@ function registerIpcHandlers(mainWindow, logger, consentStore) {
           onProgress: (progress) => {
             if (!mainWindow.isDestroyed()) {
               mainWindow.webContents.send("conversion:progress", progress);
+            }
+          },
+          openSavedFile: async (savedPath) => {
+            const openError = await shell.openPath(savedPath);
+            if (openError) {
+              logger.warn(`Could not open saved PDF: ${openError}`);
             }
           },
         },

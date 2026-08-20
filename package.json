@@ -2,14 +2,53 @@
   "name": "markdown-convert-gui",
   "version": "1.0.0",
   "description": "Drag-and-drop GUI for the markdown-convert Python package.",
+  "author": "Julynx",
   "main": "src/main/main.js",
   "scripts": {
     "start": "electron .",
-    "test": "node --test \"tests/**/*.test.js\""
+    "test": "node --test \"tests/**/*.test.js\"",
+    "generate-icons": "electron scripts/generate-icons.js",
+    "dist": "electron-builder --win",
+    "dist:win": "electron-builder --win",
+    "dist:dir": "electron-builder --win --dir",
+    "pack": "electron-builder --win --dir",
+    "dist:linux": "electron-builder --linux AppImage"
+  },
+  "build": {
+    "appId": "com.julynx.markdown-convert-gui",
+    "productName": "markdown-convert-gui",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "markdown-convert-gui"
+    }
   },
   "license": "MIT",
   "devDependencies": {
-    "electron": "^37.2.0"
+    "electron": "^37.2.0",
+    "electron-builder": "^26.15.3"
   },
   "allowScripts": {
     "electron@37.10.3": true

@@ -1,5 +1,7 @@
 # markdown-convert-gui — Plan
 
+> ALREADY IMPLEMENTED
+
 An Electron desktop app (Windows) that wraps the [`markdown-convert`](https://github.com/Julynx/markdown_convert) Python package (`pip`/`uv` package that converts Markdown files to PDF) with a drag-and-drop GUI.
 
 ## Screens

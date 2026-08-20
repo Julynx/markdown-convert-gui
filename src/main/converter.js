@@ -106,18 +106,26 @@ function moveFile(sourcePath, destinationPath) {
 }
 
 /**
- * Runs the full batch: validate, convert each file, prompt for a destination
- * and move each PDF. The batch stops at the first conversion failure.
+ * Runs the full batch: validate, convert each file, prompt for a destination,
+ * moves each PDF and optionally opens the saved file in the default viewer.
+ * The batch stops at the first conversion failure.
  *
  * @param {string[]} filePaths Dropped or picked files.
  * @param {object} callbacks
  * @param {Function} callbacks.promptSavePath Called with the default PDF name;
  *   must resolve to the chosen destination path, or null when the user cancels.
  * @param {Function} callbacks.onProgress Called with progress events for the UI.
+ * @param {Function} [callbacks.openSavedFile] Optional callback invoked with the
+ *   saved destination path to launch the default viewer.
+ * @param {Function} [callbacks.convertFn] Optional conversion runner function.
  * @param {{info: Function, warn: Function, error: Function}} logger
  * @returns {Promise<{savedCount: number, skippedCount: number}>}
  */
-async function runConversionBatch(filePaths, { promptSavePath, onProgress }, logger) {
+async function runConversionBatch(
+  filePaths,
+  { promptSavePath, onProgress, openSavedFile, convertFn = convertOneFile },
+  logger
+) {
   const { jobs } = planConversionJobs(filePaths);
   const workspacePath = createTempWorkspace();
   let savedCount = 0;
@@ -129,7 +137,7 @@ async function runConversionBatch(filePaths, { promptSavePath, onProgress }, log
       const fileName = path.basename(job.markdownPath);
       onProgress({ stage: "converting", fileName, current: index + 1, total: jobs.length });
 
-      const tempPdfPath = await convertOneFile(job, workspacePath, logger);
+      const tempPdfPath = await convertFn(job, workspacePath, logger);
       const pdfName = path.basename(tempPdfPath);
 
       onProgress({ stage: "saving", fileName: pdfName, current: index + 1, total: jobs.length });
@@ -139,6 +147,13 @@ async function runConversionBatch(filePaths, { promptSavePath, onProgress }, log
         moveFile(tempPdfPath, destinationPath);
         savedCount += 1;
         logger.info(`Saved: ${destinationPath}`);
+        if (typeof openSavedFile === "function") {
+          try {
+            await openSavedFile(destinationPath);
+          } catch (openError) {
+            logger.warn(`Could not open saved PDF: ${openError.message || openError}`);
+          }
+        }
       } else {
         fs.rmSync(tempPdfPath, { force: true });
         skippedCount += 1;

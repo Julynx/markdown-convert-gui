@@ -18,6 +18,8 @@ const WINDOW_HEIGHT = 600;
 
 /** Creates the single frameless application window. */
 function createMainWindow() {
+  const iconPath = path.join(__dirname, "..", "renderer", "assets", "icons", "app-icon.png");
+
   const mainWindow = new BrowserWindow({
     width: WINDOW_WIDTH,
     height: WINDOW_HEIGHT,
@@ -27,6 +29,7 @@ function createMainWindow() {
     frame: false,
     transparent: true,
     title: "markdown-convert-gui",
+    icon: iconPath,
     webPreferences: {
       preload: path.join(__dirname, "..", "preload", "preload.js"),
       contextIsolation: true,
