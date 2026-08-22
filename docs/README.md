@@ -10,7 +10,7 @@ _The official GUI for the [`markdown-convert`](https://pypi.org/project/markdown
 <img src="https://raw.githubusercontent.com/Julynx/julynx/refs/heads/main/assets/download.png" height="48">
 </a>
 
-<br><br>
+<br>
 
 <!--
 <a href="https://github.com/Julynx/markdown-convert-gui/releases/latest/download/markdown-convert-gui_Setup.appimage" target="_blank">
