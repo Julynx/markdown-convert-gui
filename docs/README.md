@@ -6,11 +6,11 @@
 
 _The official GUI for the [`markdown-convert`](https://pypi.org/project/markdown_convert/) Python package._
 
-<!--
 <a href="https://github.com/Julynx/markdown-convert-gui/releases/latest/download/markdown-convert-gui_Setup.exe" target="_blank">
 <img src="https://raw.githubusercontent.com/Julynx/julynx/refs/heads/main/assets/download.png" height="48">
 </a>
 
+<!--
 <a href="https://github.com/Julynx/markdown-convert-gui/releases/latest/download/markdown-convert-gui_Setup.appimage" target="_blank">
 <img src="https://raw.githubusercontent.com/Julynx/julynx/refs/heads/main/assets/download-linux.png" height="48">
 </a>
