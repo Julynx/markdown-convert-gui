@@ -1,24 +1,30 @@
-# markdown-convert-gui
+<p align="center">
+  <img
+    src="https://github.com/Julynx/markdown-convert-gui/blob/main/build/icon.png"
+    width="200px"
+  />
+</p>
 
-<!--
-[julynx.github.io/markdown-convert-gui](https://julynx.github.io/markdown-convert-gui/)
--->
+<h3 align="center">markdown-convert-gui</h3>
+<p align="center">
+  <i
+    >The official GUI for the <code>markdown-convert</code> Python package.</i
+  >
+</p>
 
-_The official GUI for the [`markdown-convert`](https://pypi.org/project/markdown_convert/) Python package._
+<hr />
 
-<a href="https://github.com/Julynx/markdown-convert-gui/releases/latest/download/markdown-convert-gui_Setup.exe" target="_blank">
-<img src="https://raw.githubusercontent.com/Julynx/julynx/refs/heads/main/assets/download.png" height="48">
-</a>
-
-<br><br>
-
-<!--
-<a href="https://github.com/Julynx/markdown-convert-gui/releases/latest/download/markdown-convert-gui_Setup.appimage" target="_blank">
-<img src="https://raw.githubusercontent.com/Julynx/julynx/refs/heads/main/assets/download-linux.png" height="48">
-</a>
-
-<br><br>
--->
+<p align="center">
+  <a
+    href="https://github.com/Julynx/markdown-convert-gui/releases/latest/download/markdown-convert-gui_Setup.exe"
+    target="_blank"
+  >
+    <img
+      src="https://raw.githubusercontent.com/Julynx/julynx/refs/heads/main/assets/download.png"
+      height="48"
+    /> </a
+  ><br /><br />
+</p>
 
 ![alt text](assets/screenshot.png)
 
