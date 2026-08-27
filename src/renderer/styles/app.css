@@ -1,25 +1,36 @@
 /**
  * markdown-convert-gui design system.
- * Clean, flat, white-space driven. 2px borders, one border radius scale,
+ * Clean, flat, white-space driven. 1px borders, one border radius scale,
  * a four-color palette (ink, blue, green, red), Inter in thin/regular/bold.
  */
 
 :root {
-  --ink: #23262d;
-  --paper: #ffffff;
-  --border: #cccccc;
+  /* Palette */
+  --lighter-orange: #fbb954;
+  --light-orange: #f79617;
+  --dark-orange: #fb6b1d;
+  --lighter-green: #91db69;
+  --light-green: #1ebc73;
+  --dark-green: #239063;
+  --lighter-blue: #8fd3ff;
+  --light-blue: #4d9be6;
+  --dark-blue: #4d65b4;
+  --lighter-red: #f04f78;
+  --light-red: #c32454;
+  --dark-red: #831c5d;
+  --lighter-purple: #a884f3;
+  --light-purple: #905ea9;
+  --dark-purple: #6b3e75;
+  --white: #ffffff;
+  --lighter-gray: #c7cfcc;
+  --light-gray: #a8b5b2;
+  --gray: #819796;
+  --dark-gray: #394a50;
+  --darker-gray: #151d28;
+  --black: #10141f;
+  /* -- + -- */
 
-  --blue: #2b6cb0;
-  --blue-fill: #d6e9fa;
-  --blue-soft: #eef5fc;
-
-  --green: #2e8b3d;
-  --green-fill: #d9f2dc;
-
-  --red: #c93a2e;
-  --red-fill: #ffe1dd;
-
-  --border-width: 2px;
+  --dark-gray-width: 1px;
   --radius: 8px;
 
   --font-family: "Inter", "Segoe UI", system-ui, sans-serif;
@@ -43,7 +54,7 @@ body {
 body {
   font-family: var(--font-family);
   font-weight: 400;
-  color: var(--ink);
+  color: var(--lighter-gray);
   background: transparent;
   padding: 6px;
   user-select: none;
@@ -56,15 +67,15 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--paper);
-  border: var(--border-width) solid var(--border);
+  background: var(--darker-gray);
+  border: var(--dark-gray-width) solid var(--dark-gray);
   border-radius: var(--radius);
   overflow: hidden;
   transition: border-color 120ms ease;
 }
 
 body.drop-target #window-frame {
-  border-color: var(--blue);
+  border-color: var(--dark-blue);
 }
 
 #titlebar {
@@ -73,7 +84,7 @@ body.drop-target #window-frame {
   align-items: center;
   justify-content: space-between;
   padding: 0 14px 0 22px;
-  border-bottom: var(--border-width) solid var(--border);
+  border-bottom: var(--dark-gray-width) solid var(--dark-gray);
   -webkit-app-region: drag;
 }
 
@@ -90,9 +101,9 @@ body.drop-target #window-frame {
   place-items: center;
   font-size: 20px;
   line-height: 1;
-  color: var(--ink);
-  background: var(--paper);
-  /*border: var(--border-width) solid var(--border);*/
+  color: var(--lighter-gray);
+  background: var(--darker-gray);
+  /*border: var(--dark-gray-width) solid var(--dark-gray);*/
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
@@ -102,9 +113,9 @@ body.drop-target #window-frame {
 }
 
 .titlebar-button:hover {
-  background: var(--red-fill);
-  border-color: var(--red);
-  color: var(--red);
+  background: var(--lighter-red);
+  border-color: var(--light-red);
+  color: var(--light-red);
 }
 
 /* ---------- Layout ---------- */
@@ -175,7 +186,7 @@ body.drop-target #window-frame {
   font-size: 17px;
   font-weight: 500;
   padding: 12px 34px;
-  border: var(--border-width) solid var(--blue);
+  border: var(--dark-gray-width) solid var(--lighter-blue);
   border-radius: var(--radius);
   cursor: pointer;
   transition: background-color 120ms ease;
@@ -187,22 +198,24 @@ body.drop-target #window-frame {
 }
 
 .button-primary {
-  color: var(--blue);
-  background: var(--blue-fill);
+  color: var(--lighter-blue);
+  background: var(--dark-blue);
 }
 
 .button-primary:not(:disabled):hover {
-  background: #c2dff7;
+  background: var(--lighter-blue);
+  color: var(--dark-blue);
+  border: var(--dark-gray-width) solid var(--dark-blue);
 }
 
 .button-secondary {
-  color: var(--ink);
-  background: var(--paper);
-  border-color: var(--border);
+  color: var(--lighter-gray);
+  background: var(--darker-gray);
+  border-color: var(--dark-gray);
 }
 
 .button-secondary:not(:disabled):hover {
-  background: var(--blue-soft);
+  background: var(--lighter-blue);
 }
 
 .button-wide {
@@ -222,8 +235,8 @@ body.drop-target #window-frame {
 .throbber {
   border-radius: 50%;
   border-style: solid;
-  border-color: var(--blue-soft);
-  border-top-color: var(--blue);
+  border-color: var(--lighter-blue);
+  border-top-color: var(--dark-blue);
   animation: throbber-spin 0.9s linear infinite;
 }
 
@@ -265,19 +278,20 @@ body.drop-target #window-frame {
   align-items: center;
   gap: 16px;
   padding: 14px 18px;
-  border: var(--border-width) solid;
+  color: var(--dark-gray);
+  border: var(--dark-gray-width) solid;
   border-radius: var(--radius);
   text-align: left;
 }
 
 .requirement-card.found {
-  border-color: var(--green);
-  background: var(--green-fill);
+  border-color: var(--dark-green);
+  background: var(--lighter-green);
 }
 
 .requirement-card.missing {
-  border-color: var(--red);
-  background: var(--red-fill);
+  border-color: var(--dark-red);
+  background: var(--lighter-red);
 }
 
 .card-icon {
@@ -313,12 +327,12 @@ body.drop-target #window-frame {
 
 .requirement-card.found .card-status,
 .requirement-card.found .card-name {
-  color: var(--green);
+  color: var(--dark-green);
 }
 
 .requirement-card.missing .card-status,
 .requirement-card.missing .card-name {
-  color: var(--red);
+  color: var(--dark-red);
 }
 
 /* ---------- Inline progress ---------- */
@@ -336,16 +350,16 @@ body.drop-target #window-frame {
   width: 100%;
   margin-top: 20px;
   padding: 16px 18px;
-  border: var(--border-width) solid var(--red);
+  border: var(--dark-gray-width) solid var(--light-red);
   border-radius: var(--radius);
-  background: var(--red-fill);
+  background: var(--lighter-red);
   text-align: left;
 }
 
 .error-panel-title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--red);
+  color: var(--light-red);
   margin-bottom: 10px;
 }
 
@@ -358,9 +372,9 @@ body.drop-target #window-frame {
   max-height: 160px;
   overflow: auto;
   padding: 12px 14px;
-  border: var(--border-width) solid var(--border);
+  border: var(--dark-gray-width) solid var(--dark-gray);
   border-radius: var(--radius);
-  background: var(--paper);
+  background: var(--darker-gray);
   font-family: "Cascadia Mono", "Consolas", monospace;
   font-size: 12px;
   font-weight: 400;
@@ -381,7 +395,7 @@ body.drop-target #window-frame {
 .error-title {
   font-size: 22px;
   font-weight: 700;
-  color: var(--red);
+  color: var(--light-red);
 }
 
 .error-message {
@@ -393,7 +407,7 @@ body.drop-target #window-frame {
   list-style: none;
   font-size: 14px;
   font-weight: 600;
-  color: var(--red);
+  color: var(--light-red);
   display: flex;
   flex-direction: column;
   gap: 4px;
