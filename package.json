@@ -1,6 +1,6 @@
 {
   "name": "markdown-convert-gui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Drag-and-drop GUI for the markdown-convert Python package.",
   "author": "Julynx",
   "main": "src/main/main.js",
